@@ -10,7 +10,7 @@ jobs:
       matrix:
         target_type:
           - server
-          - client
+          # - client
     steps:
       - uses: actions/checkout@v7
 
@@ -28,6 +28,7 @@ jobs:
 
       - run: |
           xmake repo -u
+          xmake global --policies=package.precompiled:n
 
       - run: |
           xmake f -a x64 -m release -p windows -v --target_type=${{ matrix.target_type }} -y
