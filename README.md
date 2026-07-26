@@ -1,26 +1,33 @@
-# LeviLamina Mod Template
+# STweaks
 
-Mod Template for LeviLamina
+Server-side LeviLamina tweaks for bug fixes and configurable gameplay rules.
 
-## Usage
+## Build
 
-For detailed instructions, see the [LeviLamina Documentation](https://lamina.levimc.org/developer_guides/tutorials/create_your_first_mod/)
+```powershell
+xmake f -y -p windows -a x64 -m release
+xmake
+```
 
-1. Generate a new repository from this template
-2. Clone the new repository
-3. Change the mod name and the expected LeviLamina version in `xmake.lua`
-4. Add your code.
-5. Run `xmake f -y -p windows -a x64 -m release` in the root of the repository
-6. Run `xmake` to build the mod.
+The packaged plugin is written to `bin/STweaks`.
 
-After a successful build, you will find mod in `bin/`
+## Configuration
 
-## Contributing
+On first plugin load, STweaks creates `config.json` in its LeviLamina configuration directory. Restart the server or
+reload the plugin after editing it.
 
-Ask questions by creating an issue.
+The configuration supports:
 
-PRs accepted.
+- Feature switches for chunk, bundle, silverfish, portal, wither, explosion, and loot behavior.
+- Portal-mob `allowlist` and `denylist` policies using entity type IDs.
+- Multiple prioritized 3D AABB rules for wither summoning and explosions.
+- Per-explosion-rule block breaking, fire, and entity damage controls.
+- Configurable bonus loot rules with exact or ECMAScript regular-expression block matchers.
+- Loot conditions for player mining and Silk Touch, plus independent or single-selection permille drop chances.
+
+The first matching AABB rule wins. Loot regular expressions are compiled while loading the configuration; invalid rules
+are ignored and reported in the server log.
 
 ## License
 
-CC0-1.0 © LeviMC(LiteLDev)
+CC0-1.0, based on the LeviLamina mod template.

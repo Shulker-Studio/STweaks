@@ -2,19 +2,22 @@
 
 #include "ll/api/mod/NativeMod.h"
 
-namespace my_mod {
+namespace lk {
 
-class MyMod {
+class Entry {
 
 public:
-    static MyMod& getInstance();
+    static Entry& getInstance();
 
-    MyMod() : mSelf(*ll::mod::NativeMod::current()) {}
+    Entry() : mSelf(*ll::mod::NativeMod::current()) {}
 
     [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
     /// @return True if the mod is loaded successfully.
     bool load();
+
+    /// @return True if the configuration and runtime rules were reloaded successfully.
+    bool reloadConfig();
 
     /// @return True if the mod is enabled successfully.
     bool enable();
@@ -30,4 +33,4 @@ private:
     ll::mod::NativeMod& mSelf;
 };
 
-} // namespace my_mod
+} // namespace lk
