@@ -13,6 +13,10 @@
 namespace lk::features {
 namespace {
 
+bool gEnabled = false;
+
+} // namespace
+
 LL_TYPE_INSTANCE_HOOK(
     SkullBlockCheckMobSpawnHook,
     HookPriority::Normal,
@@ -25,13 +29,9 @@ LL_TYPE_INSTANCE_HOOK(
 ) {
     if (!config::gConfig.features.witherRestriction) return origin(level, region, pos);
 
-    if (!rules::isWitherSummonAllowed(region.mDimension.getDimensionId().id, pos)) return false;
+    if (!rules::isWitherSummonAllowed(region.mDimension.getDimensionId().mValue, pos)) return false;
     return origin(level, region, pos);
 }
-
-bool gEnabled = false;
-
-} // namespace
 
 bool enableWitherRestriction() {
     if (gEnabled) return true;

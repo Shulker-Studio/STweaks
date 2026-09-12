@@ -8,8 +8,8 @@ void disableAll();
 bool enableFixBundlesCopyItem();
 void disableFixBundlesCopyItem();
 
-bool enableFixChunkCopyItem();
-void disableFixChunkCopyItem();
+// bool enableFixChunkCopyItem();
+// void disableFixChunkCopyItem();
 
 bool enableForbidSilverfish();
 void disableForbidSilverfish();

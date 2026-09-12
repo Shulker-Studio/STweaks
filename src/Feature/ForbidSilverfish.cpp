@@ -8,6 +8,10 @@
 namespace lk::features {
 namespace {
 
+bool gEnabled = false;
+
+} // namespace
+
 LL_TYPE_INSTANCE_HOOK(
     InfestedMobEffectOnActorHurtHook,
     ll::memory::HookPriority::Normal,
@@ -23,10 +27,6 @@ LL_TYPE_INSTANCE_HOOK(
 
     return origin(actor, amplifier, source, damage);
 }
-
-bool gEnabled = false;
-
-} // namespace
 
 bool enableForbidSilverfish() {
     if (gEnabled) return true;

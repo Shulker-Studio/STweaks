@@ -17,6 +17,10 @@ bool isMinecraftBundle(std::string_view itemType) {
     return itemType.starts_with("minecraft:") && itemType.ends_with("bundle");
 }
 
+bool gEnabled = false;
+
+} // namespace
+
 LL_TYPE_INSTANCE_HOOK(
     HopperAddItemHook,
     ll::memory::HookPriority::Normal,
@@ -53,10 +57,6 @@ LL_TYPE_STATIC_HOOK(
     if (isMinecraftBundle(item.getTypeName())) return false;
     return origin(container, item, stackSizeLimit, slot, face);
 }
-
-bool gEnabled = false;
-
-} // namespace
 
 bool enableFixBundlesCopyItem() {
     if (gEnabled) return true;

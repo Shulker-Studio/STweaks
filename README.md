@@ -13,8 +13,8 @@ The packaged plugin is written to `bin/STweaks`.
 
 ## Configuration
 
-On first plugin load, STweaks creates `config.json` in its LeviLamina configuration directory. Restart the server or
-reload the plugin after editing it.
+On first plugin load, STweaks creates `config.json` in its LeviLamina configuration directory. After editing it, run
+`/stweaks reload` as an administrator to apply the new configuration without reloading the plugin.
 
 The configuration supports:
 

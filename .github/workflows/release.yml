@@ -26,9 +26,13 @@ jobs:
           restore-keys: |
             xmake-
 
+      - name: Setup LLVM
+        uses: ZhongRuoyu/setup-llvm@v0
+        with:
+          llvm-version: 22
+
       - run: |
           xmake repo -u
-          xmake global --policies=package.precompiled:n
 
       - run: |
           xmake f -a x64 -m release -p windows --target_type=${{ matrix.target_type }} -y

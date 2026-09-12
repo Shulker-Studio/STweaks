@@ -1,6 +1,7 @@
 #include <ll/api/memory/Hook.h>
 #include <mc/world/level/BlockSource.h>
 #include <mc/world/level/Explosion.h>
+#include <mc/world/level/dimension/DimensionType.h>
 
 #include "Config/Config.h"
 #include "Feature/Features.h"
@@ -10,16 +11,16 @@
 namespace lk::features {
 namespace {
 
-LL_TYPE_INSTANCE_HOOK(ExplodeHook, HookPriority::High, Explosion, &Explosion::explode, bool, ::IRandom& random) {
-    if (!config::gConfig.features.explosionProtection) return origin(random);
-
-    rules::applyExplosionRules(mRegion.getDimensionId().id, mPos.get(), mBreaking, mFire, mDamageScaling);
-    return origin(random);
-}
-
 bool gEnabled = false;
 
 } // namespace
+
+LL_TYPE_INSTANCE_HOOK(ExplodeHook, HookPriority::High, Explosion, &Explosion::explode, bool, ::IRandom& random) {
+    if (!config::gConfig.features.explosionProtection) return origin(random);
+
+    rules::applyExplosionRules(mRegion.getDimensionId().mValue, mPos.get(), mBreaking, mFire, mDamageScaling);
+    return origin(random);
+}
 
 bool enableExplosionProtection() {
     if (gEnabled) return true;

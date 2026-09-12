@@ -9,6 +9,10 @@
 namespace lk::features {
 namespace {
 
+bool gEnabled = false;
+
+} // namespace
+
 LL_TYPE_INSTANCE_HOOK(
     MobChangeDimHook,
     ll::memory::HookPriority::Normal,
@@ -21,10 +25,6 @@ LL_TYPE_INSTANCE_HOOK(
     if (!rules::isMobPortalAllowed(getTypeName())) return false;
     return origin();
 }
-
-bool gEnabled = false;
-
-} // namespace
 
 bool enablePortalMobPolicy() {
     if (gEnabled) return true;

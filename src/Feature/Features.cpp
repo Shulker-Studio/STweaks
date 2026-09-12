@@ -3,7 +3,9 @@
 namespace lk::features {
 bool enableAll() {
     bool success = true;
-    success      = enableFixChunkCopyItem() && success;
+
+    // success      = enableFixChunkCopyItem() && success; 
+
     success      = enableFixBundlesCopyItem() && success;
     success      = enableForbidSilverfish() && success;
     success      = enablePortalMobPolicy() && success;
@@ -22,7 +24,8 @@ void disableAll() {
     disablePortalMobPolicy();
     disableForbidSilverfish();
     disableFixBundlesCopyItem();
-    disableFixChunkCopyItem();
+    
+    // disableFixChunkCopyItem();
 }
 
 } // namespace lk::features

@@ -11,7 +11,6 @@
 #include "Rule/Rules.h"
 
 namespace lk::features {
-namespace {
 
 LL_TYPE_INSTANCE_HOOK(
     GetResourceDropsHook,
@@ -31,8 +30,6 @@ LL_TYPE_INSTANCE_HOOK(
 }
 
 bool gEnabled = false;
-
-} // namespace
 
 bool enableConfiguredLoot() {
     if (gEnabled) return true;

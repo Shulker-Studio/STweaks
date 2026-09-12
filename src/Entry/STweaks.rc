@@ -1,0 +1,33 @@
+#include "Entry/Version.h"
+#include "winres.h"
+
+#pragma code_page(65001)
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION STWEAKS_VERSION_MAJOR, STWEAKS_VERSION_MINOR, STWEAKS_VERSION_PATCH, 0
+    PRODUCTVERSION STWEAKS_VERSION_MAJOR, STWEAKS_VERSION_MINOR, STWEAKS_VERSION_PATCH, 0
+    FILEFLAGSMASK 0x3fL
+    FILEFLAGS 0x0L
+    FILEOS 0x40004L
+    FILETYPE 0x2L
+    FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "CompanyName", "Shulker Studio"
+            VALUE "FileDescription", "Server tweaks for LeviLamina"
+            VALUE "FileVersion", STWEAKS_VERSION_STRING
+            VALUE "InternalName", "STweaks.dll"
+            VALUE "LegalCopyright", "Copyright (c) 2026 Shulker Studio"
+            VALUE "OriginalFilename", "STweaks.dll"
+            VALUE "ProductName", "STweaks"
+            VALUE "ProductVersion", STWEAKS_VERSION_STRING
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
