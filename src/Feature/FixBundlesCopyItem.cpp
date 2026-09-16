@@ -4,6 +4,8 @@
 #include <mc/world/level/BlockSource.h>
 #include <mc/world/level/block/actor/DropperBlockActor.h>
 
+#include <functional>
+#include <optional>
 #include <string_view>
 
 #include "Config/Config.h"
@@ -27,17 +29,20 @@ LL_TYPE_INSTANCE_HOOK(
     Hopper,
     &Hopper::_tryMoveInItem,
     bool,
-    ::BlockSource& region,
-    ::Container&   container,
-    ::ItemStack&   item,
-    int            slot,
-    int            face,
-    int            itemCount
+    ::BlockSource&                                                region,
+    ::Container&                                                  container,
+    ::std::optional<::std::reference_wrapper<::ItemActor>> const& itemActor,
+    ::ItemStack&                                                  item,
+    int                                                           slot,
+    int                                                           face,
+    int                                                           itemCount
 ) {
-    if (!config::gConfig.features.fixBundlesCopyItem) return origin(region, container, item, slot, face, itemCount);
+    if (!config::gConfig.features.fixBundlesCopyItem) {
+        return origin(region, container, itemActor, item, slot, face, itemCount);
+    }
 
     if (isMinecraftBundle(item.getTypeName())) return false;
-    return origin(region, container, item, slot, face, itemCount);
+    return origin(region, container, itemActor, item, slot, face, itemCount);
 }
 
 LL_TYPE_STATIC_HOOK(
