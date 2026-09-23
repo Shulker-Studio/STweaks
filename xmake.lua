@@ -46,9 +46,9 @@ target("STweaks") -- Change this to your mod name.
     set_symbols("debug")
     add_headerfiles("src/**.h")
     add_files("src/**.cpp")
-    add_files("src/**.rc")
+    add_files("$(builddir)/config/Entry/STweaks.rc", {always_added = true})
     set_configdir("$(builddir)/config")
-    add_configfiles("src/(Entry/Version.h.in)")
+    add_configfiles("src/(Entry/Version.h.in)", "src/(Entry/STweaks.rc.in)")
     add_includedirs("src", "$(builddir)/config")
     if is_config("target_type", "server") then
     --  add_includedirs("src-server")
