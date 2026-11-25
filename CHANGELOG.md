@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [26.60.2] - 2026-11-25
+
+### Changed
+
+- Migrated package metadata from `tooth.json` to `lip.toml`, which is now the single source of truth for the version and build metadata.
+- Package tags now use the catalogue categories of levimc.org/mods: `bugfix` and `game-mechanics`.
+- The packaged `manifest.json` version now carries the release version, the short commit hash, and the UTC build time.
+
 ## [26.60.1] - 2026-11-04
 
 ### Changed

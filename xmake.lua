@@ -58,22 +58,22 @@ target("STweaks") -- Change this to your mod name.
     --  add_files("src-client/**.cpp")
     end
 
+    -- lip.toml 是版本号的唯一来源；资源版本带 +<短 hash>，manifest 额外带 UTC 构建时间
     on_load(function (target)
-        import("core.base.json")
-
-        local tooth = json.loadfile("tooth.json")
-        local modVersion = tooth and tooth["version"]
-        if type(modVersion) ~= "string" or not modVersion:match("^%d+%.%d+%.%d+$") then
-            raise("tooth.json version must use major.minor.patch format")
+        local lipToml = io.readfile("lip.toml")
+        local modVersion = lipToml and lipToml:match("\nversion%s*=%s*\"([^\"]+)\"")
+        if not modVersion or not modVersion:match("^%d+%.%d+%.%d+$") then
+            raise("lip.toml version must use major.minor.patch format")
         end
 
         local major, minor, patch = modVersion:match("^(%d+)%.(%d+)%.(%d+)$")
         local buildMetadata = os.iorun("git rev-parse --short HEAD"):gsub("\n", "")
         local versionString = modVersion .. "+" .. buildMetadata
+        local manifestVersion = versionString .. "." .. os.date("!%Y%m%dT%H%M%SZ")
         target:set("version", modVersion)
         target:set("configvar", "STWEAKS_VERSION_MAJOR", major)
         target:set("configvar", "STWEAKS_VERSION_MINOR", minor)
         target:set("configvar", "STWEAKS_VERSION_PATCH", patch)
         target:set("configvar", "STWEAKS_VERSION_STRING", versionString)
-        target:add("rules", "@levibuildscript/modpacker", {modVersion = versionString})
+        target:add("rules", "@levibuildscript/modpacker", {modVersion = manifestVersion})
     end)

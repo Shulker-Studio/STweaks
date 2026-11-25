@@ -1,0 +1,20 @@
+format = 4
+id = "github.com/Shulker-Studio/STweaks"
+version = "26.60.2"
+
+[info]
+name = "STweaks"
+description = "潜小贝服务器专用插件——原版BUG修复以及部分功能微调"
+tags = ["platform:levilamina", "type:mod", "bugfix", "game-mechanics"]
+
+[[variants.""]]
+side = "server"
+platform = "win-x64"
+
+[variants."".deps]
+"github.com/LiteLDev/LeviLamina" = "26.60.*"
+
+[[variants."".assets]]
+type = "zip"
+urls = ["https://{{id}}/releases/download/v{{version}}/STweaks-server-windows-x64.zip"]
+place = [{ src = "STweaks/", dest = "mods/STweaks/" }]
